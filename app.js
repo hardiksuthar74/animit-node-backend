@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const AppError = require("./utils/appError");
 const userRouter = require("./routes/userRoute");
 const globalErrorHandler = require("./controllers/errorController");
+const animeRouter = require("./routes/animeRoute");
 const app = express();
 
 // 1) MIDDLEWARE
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 
 // 2) ROUTE
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/animes", animeRouter);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
